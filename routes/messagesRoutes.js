@@ -9,7 +9,7 @@ const Chat = require('../schemas/ChatSchema');
 
 router.get("/", (req, res, next) => {
     res.status(200).render("inboxPage", {
-        pageTitle: "Повідомлення",
+        pageTitle: "Чати",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     });
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 
 router.get("/new", (req, res, next) => {
     res.status(200).render("newMessage", {
-        pageTitle: "Нове повідомлення",
+        pageTitle: "Створити груповий чат",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     });

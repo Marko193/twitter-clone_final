@@ -59,7 +59,7 @@ app.use("/api/notifications", notificationsApiRoute);
 app.get("/", middleware.requireLogin, (req, res, next) => {
 
     var payload = {
-        pageTitle: "Home",
+        pageTitle: "Головна сторінка",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user),
     }

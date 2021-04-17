@@ -418,7 +418,7 @@ function createPostHtml(postData, largeFont = false) {
     if(isRetweet) {
         retweetText = `<span>
                         <i class='fas fa-retweet'></i>
-                        Переслано <a href='/profile/${retweetedBy}'>@${retweetedBy}</a>    
+                        Переслано користувачем <a href='/profile/${retweetedBy}'>@${retweetedBy}</a>    
                     </span>`
     }
 
@@ -434,7 +434,7 @@ function createPostHtml(postData, largeFont = false) {
 
         var replyToUsername = postData.replyTo.postedBy.username;
         replyFlag = `<div class='replyFlag'>
-                        Відповідає <a href='/profile/${replyToUsername}'>@${replyToUsername}<a>
+                        Відповідає користувачу <a href='/profile/${replyToUsername}'>@${replyToUsername}<a>
                     </div>`;
 
     }
@@ -549,7 +549,7 @@ function outputPosts(results, container) {
     });
 
     if (results.length == 0) {
-        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
+        container.append("<span class='noResults'>Немає інформації для відображення!</span>")
     }
 }
 
@@ -579,7 +579,7 @@ function outputUsers(results, container) {
     });
 
     if(results.length == 0) {
-        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
+        container.append("<span class='noResults'>Немає інформації для відображення!</span>")
     }
 }
 
@@ -635,7 +635,7 @@ function outputSelectableUsers(results, container) {
     });
 
     if(results.length == 0) {
-        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
+        container.append("<span class='noResults'>Немає інформації для відображення!</span>")
     }
 }
 
@@ -759,7 +759,7 @@ function outputNotificationList(notifications, container) {
     })
 
     if(notifications.length == 0) {
-        container.append("<span class='noResults'>Nothing to show.</span>");
+        container.append("<span class='noResults'>Немає інформації для відображення!</span>");
     }
 }
 
@@ -845,7 +845,7 @@ function getLatestMessage(latestMessage) {
         return `${sender.lastName} ${sender.firstName} ${sender.patronymic}: ${latestMessage.content}`;
     }
 
-    return "New chat";
+    return "Новий чат";
 }
 
 function getChatImageElements(chatData) {

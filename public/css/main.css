@@ -831,3 +831,7 @@ button span {
     background-color: white;
 }
 
+.modal-content{
+    width: 110%;
+
+}
