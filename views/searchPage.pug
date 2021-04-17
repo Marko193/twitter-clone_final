@@ -4,11 +4,11 @@ block content
 
     .searchBarContainer
         i.fas.fa-search
-        input#searchBox(type="text", name="searchBox", data-search=selectedTab, placeholder="Search for users or posts")
+        input#searchBox(type="text", name="searchBox", data-search=selectedTab, placeholder="Знайти пости чи користувачів")
 
     .tabsContainer
-        +createTab("Posts", `/search/posts`, selectedTab != "users")
-        +createTab("Users", `/search/users`, selectedTab == "users")
+        +createTab("Пости", `/search/posts`, selectedTab != "users")
+        +createTab("Користувачі", `/search/users`, selectedTab == "users")
 
     .resultsContainer
 

@@ -8,7 +8,7 @@ const User = require('../schemas/UserSchema');
 router.get("/", (req, res, next) => {
 
     var payload = {
-        pageTitle: req.session.user.username,
+        pageTitle: `@${req.session.user.username}`,
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user),
         profileUser: req.session.user
@@ -57,7 +57,7 @@ async function getPayload(username, userLoggedIn) {
 
         if (user == null) {
             return {
-                pageTitle: "User not found",
+                pageTitle: "Такий користувач не знайдений!",
                 userLoggedIn: userLoggedIn,
                 userLoggedInJs: JSON.stringify(userLoggedIn)
             }

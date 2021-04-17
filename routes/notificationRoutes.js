@@ -9,7 +9,7 @@ const Chat = require('../schemas/ChatSchema');
 
 router.get("/", (req, res, next) => {
     res.status(200).render("notificationsPage", {
-        pageTitle: "Notifications",
+        pageTitle: "Сповіщення",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     });

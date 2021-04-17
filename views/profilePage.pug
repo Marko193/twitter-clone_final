@@ -2,7 +2,7 @@ extends layouts/main-layout.pug
 
 block content
     if !profileUser
-        span.errorMessage Check the url you are trying to access
+        span.errorMessage Перевірте на правильність URL, яким ви скористалися!
     else  
         script.
             var profileUserId = '!{profileUser._id}';
@@ -40,20 +40,22 @@ block content
                         +createFollowButton(profileUser, false)
 
             .userDetailsContainer
-                span.displayName #{profileUser.firstName} #{profileUser.lastName}
-                span.username @#{profileUser.username}
+                span.displayName #{profileUser.lastName} #{profileUser.firstName} #{profileUser.patronymic}
+                span.displayName #{profileUser.group}
+                //span.displayName @#{profileUser.username}
+                br/
                 span.description #{profileUser.description}
 
                 .followersContainer
                     a(href=`/profile/${profileUser.username}/following`)
                         span.value #{followingCount}
-                        span Following
+                        span Підписанти
                     a(href=`/profile/${profileUser.username}/followers`)
                         span#followersValue.value #{followersCount}
-                        span Followers
+                        span Підписники
         .tabsContainer
-            +createTab("Posts", `/profile/${profileUser.username}`, selectedTab != "replies")
-            +createTab("Replies", `/profile/${profileUser.username}/replies`, selectedTab == "replies")
+            +createTab("Пости", `/profile/${profileUser.username}`, selectedTab != "replies")
+            +createTab("Відповіді", `/profile/${profileUser.username}/replies`, selectedTab == "replies")
 
         .pinnedPostContainer
         .postsContainer

@@ -275,6 +275,8 @@ button span {
 
 .errorMessage {
     padding: var(--spacing);
+    font-weight: bold;
+    background-color: red;
 }
 
 .coverPhotoSection {
@@ -828,3 +830,4 @@ button span {
 #notificationList .active {
     background-color: white;
 }
+

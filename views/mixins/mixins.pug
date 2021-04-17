@@ -12,8 +12,8 @@ mixin createReplyModal(userLoggedIn)
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#replyModalLabel.modal-title Reply
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    h5#replyModalLabel.modal-title Відповісти
+                    button.close(type='button', data-dismiss='modal', aria-label='Закрити')
                     span(aria-hidden='true') &times;
                 .modal-body
                     #originalPostContainer
@@ -21,24 +21,24 @@ mixin createReplyModal(userLoggedIn)
                         .userImageContainer
                             img(src=userLoggedIn.profilePic, alt="User's profile picture")
                         .textareaContainer
-                            textarea#replyTextarea(placeholder="What's happening?")
+                            textarea#replyTextarea(placeholder="Ваша відповідь")
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                    button#submitReplyButton.btn.btn-primary(type='button', disabled="") Reply
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Закрити
+                    button#submitReplyButton.btn.btn-primary(type='button', disabled="") Відповісти
 
 mixin createDeletePostModal()
     #deletePostModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='deletePostModalLabel', aria-hidden='true')
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#deletePostModalLabel.modal-title Delete the post?
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    h5#deletePostModalLabel.modal-title Видалити пост?
+                    button.close(type='button', data-dismiss='modal', aria-label='Закрити')
                     span(aria-hidden='true') &times;
                 .modal-body
-                    p You won't be able to delete this.
+                    p Цю дію буде неможливо скасувати.
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                    button#deletePostButton.btn.btn-primary(type='button') Delete
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Закрити
+                    button#deletePostButton.btn.btn-primary(type='button') Видалити
 
 mixin createPostModals(userLoggedIn)
     +createReplyModal(userLoggedIn)
@@ -61,8 +61,8 @@ mixin createImageUploadModal()
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#imageUploadModalLabel.modal-title Upload a new profile picture
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    h5#imageUploadModalLabel.modal-title Завантажити нове зображення для профілю
+                    button.close(type='button', data-dismiss='modal', aria-label='Закрити')
                     span(aria-hidden='true') &times;
                 .modal-body
                     input#filePhoto(type="file", name="filePhoto")
@@ -70,7 +70,7 @@ mixin createImageUploadModal()
                     .imagePreviewContainer
                         img#imagePreview
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Відмінити
                     button#imageUploadButton.btn.btn-primary(type='button') Save
 
 mixin createCoverPhotoUploadModal()
@@ -78,8 +78,8 @@ mixin createCoverPhotoUploadModal()
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#coverPhotoModalLabel.modal-title Upload a new cover photo
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    h5#coverPhotoModalLabel.modal-title Завантажити нове фото-обкладинку
+                    button.close(type='button', data-dismiss='modal', aria-label='Закрити')
                     span(aria-hidden='true') &times;
                 .modal-body
                     input#coverPhoto(type="file", name="filePhoto")
@@ -87,36 +87,36 @@ mixin createCoverPhotoUploadModal()
                     .imagePreviewContainer
                         img#coverPreview
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-                    button#coverPhotoButton.btn.btn-primary(type='button') Save
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Вімінити
+                    button#coverPhotoButton.btn.btn-primary(type='button') Зберігти
 
 mixin createPinnedPostModal()
     #confirmPinModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='confirmPinModalLabel', aria-hidden='true')
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#confirmPinModalLabel.modal-title Pin this post?
+                    h5#confirmPinModalLabel.modal-title Закріпити цей пост?
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') &times;
                 .modal-body
-                    p This post will appear at the top of your profile. You can only pin one post.
+                    p Цей пост з'явиться зверху у вашому профілі. Ви можете закріпити лише один пост.
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-                    button#pinPostButton.btn.btn-primary(type='button') Pin
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Відмінити
+                    button#pinPostButton.btn.btn-primary(type='button') Закріпити
 
 mixin createUnpinPostModal()
     #unpinModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='unpinModalLabel', aria-hidden='true')
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#unpinModalLabel.modal-title Unpin the post?
-                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    h5#unpinModalLabel.modal-title Відкріпити цей пост?
+                    button.close(type='button', data-dismiss='modal', aria-label='Закрити')
                     span(aria-hidden='true') &times;
                 .modal-body
-                    p This post will be unpinned.
+                    p Цей пост буде відкріпленим.
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-                    button#unpinPostButton.btn.btn-primary(type='button') Pin
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Відмінити
+                    button#unpinPostButton.btn.btn-primary(type='button') Відприкріпити
 
 mixin createChatImage(chatData, userLoggedIn)
     if(!chatData)
@@ -146,11 +146,11 @@ mixin createChatNameModal(chat)
         .modal-dialog(role='document')
             .modal-content
                 .modal-header
-                    h5#chatNameModalLabel.modal-title Change the chat name
+                    h5#chatNameModalLabel.modal-title Змінити назву чату
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                     span(aria-hidden='true') &times;
                 .modal-body
-                    input#chatNameTextbox(type="text", placeholder="Enter a name for this chat", value=chat.chatName)
+                    input#chatNameTextbox(type="text", placeholder="Введіть нове ім'я для чату", value=chat.chatName)
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
-                    button#chatNameButton.btn.btn-primary(type='button') Save
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Відмінити
+                    button#chatNameButton.btn.btn-primary(type='button') Зберігти

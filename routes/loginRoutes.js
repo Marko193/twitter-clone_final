@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 router.get("/", (req, res, next) => {
     
-    res.status(200).render("login");
+    res.status(200).render("Login");
 })
 
 router.post("/", async (req, res, next) => {
@@ -28,8 +28,8 @@ router.post("/", async (req, res, next) => {
         })
         .catch((error) => {
             console.log(error);
-            payload.errorMessage = "Something went wrong.";
-            res.status(200).render("login", payload);
+            payload.errorMessage = "Щось пішло не так!.";
+            res.status(200).render("Login", payload);
         });
         
         if(user != null) {
@@ -41,12 +41,12 @@ router.post("/", async (req, res, next) => {
             }
         }
 
-        payload.errorMessage = "Login credentials incorrect.";
-        return res.status(200).render("login", payload);
+        payload.errorMessage = "Невірні дані для авторизації.";
+        return res.status(200).render("Login", payload);
     }
 
-    payload.errorMessage = "Make sure each field has a valid value.";
-    res.status(200).render("login");
+    payload.errorMessage = "Перевірте, чи вcі поля містять коректні значення.";
+    res.status(200).render("Login");
 })
 
 module.exports = router;

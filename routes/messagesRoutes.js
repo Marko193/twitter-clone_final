@@ -9,7 +9,7 @@ const Chat = require('../schemas/ChatSchema');
 
 router.get("/", (req, res, next) => {
     res.status(200).render("inboxPage", {
-        pageTitle: "Inbox",
+        pageTitle: "Повідомлення",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     });
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
 
 router.get("/new", (req, res, next) => {
     res.status(200).render("newMessage", {
-        pageTitle: "New message",
+        pageTitle: "Нове повідомлення",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     });
@@ -31,13 +31,13 @@ router.get("/:chatId", async (req, res, next) => {
 
 
     var payload = {
-        pageTitle: "Chat",
+        pageTitle: "Чат",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user)
     };
 
     if(!isValidId) {
-        payload.errorMessage = "Chat does not exist or you do not have permission to view it.";
+        payload.errorMessage = "Такого чату не існує або ви не маєте доступу до нього.";
         return res.status(200).render("chatPage", payload);
     }
 
@@ -55,7 +55,7 @@ router.get("/:chatId", async (req, res, next) => {
     }
 
     if(chat == null) {
-        payload.errorMessage = "Chat does not exist or you do not have permission to view it.";
+        payload.errorMessage = "Такого чату не існує або ви не маєте доступу до нього.";
     }
     else {
         payload.chat = chat;

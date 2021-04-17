@@ -407,7 +407,7 @@ function createPostHtml(postData, largeFont = false) {
         return console.log("User object not populated");
     }
 
-    var displayName = postedBy.firstName + " " + postedBy.lastName;
+    var displayName = postedBy.lastName + " " + postedBy.firstName + " " + postedBy.patronymic;
     var timestamp = timeDifference(new Date(), new Date(postData.createdAt));
 
     var likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active" : "";
@@ -418,7 +418,7 @@ function createPostHtml(postData, largeFont = false) {
     if(isRetweet) {
         retweetText = `<span>
                         <i class='fas fa-retweet'></i>
-                        Retweeted by <a href='/profile/${retweetedBy}'>@${retweetedBy}</a>    
+                        Переслано <a href='/profile/${retweetedBy}'>@${retweetedBy}</a>    
                     </span>`
     }
 
@@ -434,7 +434,7 @@ function createPostHtml(postData, largeFont = false) {
 
         var replyToUsername = postData.replyTo.postedBy.username;
         replyFlag = `<div class='replyFlag'>
-                        Replying to <a href='/profile/${replyToUsername}'>@${replyToUsername}<a>
+                        Відповідає <a href='/profile/${replyToUsername}'>@${replyToUsername}<a>
                     </div>`;
 
     }
@@ -467,7 +467,7 @@ function createPostHtml(postData, largeFont = false) {
                         <div class='pinnedPostText'>${pinnedPostText}</div>
                         <div class='header'>
                             <a href='/profile/${postedBy.username}' class='displayName'>${displayName}</a>
-                            <span class='username'>@${postedBy.username}</span>
+                            <span class='username'>${postedBy.group}</span>
                             <span class='date'>${timestamp}</span>
                             ${buttons}
                         </div>
@@ -510,29 +510,29 @@ function timeDifference(current, previous) {
     var elapsed = current - previous;
 
     if (elapsed < msPerMinute) {
-        if(elapsed/1000 < 30) return "Just now";
+        if(elapsed/1000 < 30) return "Мить тому";
         
-        return Math.round(elapsed/1000) + ' seconds ago';   
+        return Math.round(elapsed/1000) + ' секунд тому';
     }
 
     else if (elapsed < msPerHour) {
-         return Math.round(elapsed/msPerMinute) + ' minutes ago';   
+         return Math.round(elapsed/msPerMinute) + ' хвилин тому';
     }
 
     else if (elapsed < msPerDay ) {
-         return Math.round(elapsed/msPerHour ) + ' hours ago';   
+         return Math.round(elapsed/msPerHour ) + ' годин тому';
     }
 
     else if (elapsed < msPerMonth) {
-        return Math.round(elapsed/msPerDay) + ' days ago';   
+        return Math.round(elapsed/msPerDay) + ' днів тому';
     }
 
     else if (elapsed < msPerYear) {
-        return Math.round(elapsed/msPerMonth) + ' months ago';   
+        return Math.round(elapsed/msPerMonth) + ' місяців тому';
     }
 
     else {
-        return Math.round(elapsed/msPerYear ) + ' years ago';   
+        return Math.round(elapsed/msPerYear ) + ' років тому';
     }
 }
 
@@ -549,7 +549,7 @@ function outputPosts(results, container) {
     });
 
     if (results.length == 0) {
-        container.append("<span class='noResults'>Nothing to show.</span>")
+        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
     }
 }
 
@@ -579,16 +579,16 @@ function outputUsers(results, container) {
     });
 
     if(results.length == 0) {
-        container.append("<span class='noResults'>No results found</span>")
+        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
     }
 }
 
 function createUserHtml(userData, showFollowButton) {
 
-    var name = userData.firstName + " " + userData.lastName;
+    var name = userData.lastName + " " + userData.firstName + " " + userData.patronymic;
     var isFollowing = userLoggedIn.following && userLoggedIn.following.includes(userData._id);
-    var text = isFollowing ? "Following" : "Follow"
-    var buttonClass = isFollowing ? "followButton following" : "followButton"
+    var text = isFollowing ? "Підписані" : "Підписатися"
+    var buttonClass = isFollowing ? "followButton Підписані" : "followButton"
 
     var followButton = "";
     if (showFollowButton && userLoggedIn._id != userData._id) {
@@ -604,6 +604,7 @@ function createUserHtml(userData, showFollowButton) {
                 <div class='userDetailsContainer'>
                     <div class='header'>
                         <a href='/profile/${userData.username}'>${name}</a>
+                        <span class='group'>${userData.group}</span>
                         <span class='username'>@${userData.username}</span>
                     </div>
                 </div>
@@ -634,7 +635,7 @@ function outputSelectableUsers(results, container) {
     });
 
     if(results.length == 0) {
-        container.append("<span class='noResults'>No results found</span>")
+        container.append("<span class='noResults'>Нема інформації для відображення!</span>")
     }
 }
 
@@ -650,7 +651,7 @@ function updateSelectedUsersHtml() {
     var elements = [];
 
     selectedUsers.forEach(user => {
-        var name = user.firstName + " " + user.lastName;
+        var name = user.lastName + " " + user.firstName + " " + user.patronymic;
         var userElement = $(`<span class='selectedUser'>${name}</span>`);
         elements.push(userElement);
     })
@@ -664,7 +665,7 @@ function getChatName(chatData) {
 
     if(!chatName) {
         var otherChatUsers = getOtherChatUsers(chatData.users);
-        var namesArray = otherChatUsers.map(user => user.firstName + " " + user.lastName);
+        var namesArray = otherChatUsers.map(user => user.lastName + " " + user.firstName + " " + user.patronymic);
         chatName = namesArray.join(", ")
     }
 
@@ -786,21 +787,21 @@ function getNotificationText(notification) {
         return alert("user from data not populated");
     }
 
-    var userFromName = `${userFrom.firstName} ${userFrom.lastName}`;
+    var userFromName = `${userFrom.lastName} ${userFrom.firstName} ${userFrom.patronymic} `;
     
     var text;
 
     if(notification.notificationType == "retweet") {
-        text = `${userFromName} retweeted one of your posts`;
+        text = `${userFromName} переслав один з ваших постів`;
     }
     else if(notification.notificationType == "postLike") {
-        text = `${userFromName} liked one of your posts`;
+        text = `${userFromName} сподобався один з ваших постів`;
     }
     else if(notification.notificationType == "reply") {
-        text = `${userFromName} replied to one of your posts`;
+        text = `${userFromName} відповів на один з ваших постів`;
     }
     else if(notification.notificationType == "follow") {
-        text = `${userFromName} followed you`;
+        text = `${userFromName} підписався на вас`;
     }
 
     return `<span class='ellipsis'>${text}</span>`;
@@ -841,7 +842,7 @@ function createChatHtml(chatData) {
 function getLatestMessage(latestMessage) {
     if(latestMessage != null) {
         var sender = latestMessage.sender;
-        return `${sender.firstName} ${sender.lastName}: ${latestMessage.content}`;
+        return `${sender.lastName} ${sender.firstName} ${sender.patronymic}: ${latestMessage.content}`;
     }
 
     return "New chat";

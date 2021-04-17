@@ -2,22 +2,22 @@ extends layouts/login-layout.pug
 
 block content
     .loginContainer
-        h1 Register
+        h1 Реєстрація
         form#registerForm(method="post", onsubmit="event.preventDefault(); validateForm();")
 
             p.errorMessage #{errorMessage}
 
-            input(type="text", name="firstName", placeholder="Name", value=firstName required="")
-            input(type="text", name="lastName", placeholder="Surname", value=lastName required="")
-            //input(type="text", name="lastName", placeholder="Patronymic", value=lastName required="")
-            input(type="email", name="email", placeholder="Email", value=email required="")
-            //input(type="text", name="lastName", placeholder="The name of the group", value=lastName required="")
-            input(type="text", name="username", placeholder="Username", value=username required="")
-            input#password(type="password", name="password", placeholder="Password", required="")
-            input#passwordConf(type="password", name="passwordConf", placeholder="Confirm password", required="")
-            input(type="submit", value="Login")
+            input(type="text", name="lastName", placeholder="Прізвище", value=lastName required="")
+            input(type="text", name="firstName", placeholder="Ім'я", value=firstName required="")
+            input(type="text", name="patronymic", placeholder="По-батькові", value=patronymic required="")
+            input(type="text", name="group", placeholder="Назва групи", value=group required="")
+            input(type="email", name="email", placeholder="Електронна адреса", value=email required="")
+            input(type="text", name="username", placeholder="Позивний користувача", value=username required="")
+            input#password(type="password", name="password", placeholder="Пароль", required="")
+            input#passwordConf(type="password", name="passwordConf", placeholder="Підтведити пароль", required="")
+            input(type="submit", value="Увійти")
 
-        a(href="/login") Already have an account? Login here.
+        a(href="/login") Вже маєте акаунт? Авторизуватися.
     
     script.
         var passwordField = document.getElementById("password")

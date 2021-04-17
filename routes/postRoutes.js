@@ -8,7 +8,7 @@ const User = require('../schemas/UserSchema');
 router.get("/:id", (req, res, next) => {
 
     var payload = {
-        pageTitle: "View post",
+        pageTitle: "Сторінка перегляду посту",
         userLoggedIn: req.session.user,
         userLoggedInJs: JSON.stringify(req.session.user),
         postId: req.params.id

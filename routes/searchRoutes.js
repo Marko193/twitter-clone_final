@@ -18,7 +18,7 @@ router.get("/:selectedTab", (req, res, next) => {
 
 function createPayload(userLoggedIn) {
     return {
-        pageTitle: "Search",
+        pageTitle: "Пошук",
         userLoggedIn: userLoggedIn,
         userLoggedInJs: JSON.stringify(userLoggedIn)
     };
