@@ -276,7 +276,7 @@ button span {
 .errorMessage {
     padding: var(--spacing);
     font-weight: bold;
-    background-color: red;
+    color: red;
 }
 
 .coverPhotoSection {

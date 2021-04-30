@@ -53,12 +53,12 @@ router.post("/", async (req, res, next) => {
         }
         else {
             // User found
-            if (email == user.email) {
+            if (email === user.email) {
                 payload.errorMessage = "Дана електронна адреса вже використовується.";
             }
-            // else {
-            //     payload.errorMessage = "Username already in use.";
-            // }
+            else if (username === user.username){
+                payload.errorMessage = "Даний позивний вже використовується.";
+            }
             res.status(200).render("register", payload);
         }
     }
